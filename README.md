@@ -1,1 +1,1 @@
-# ngx-bugatlas
+# ngx-bugatlas-library
