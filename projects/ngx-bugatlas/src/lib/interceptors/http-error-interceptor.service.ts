@@ -4,20 +4,28 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { NgxBugatlasService } from '../ngx-bugatlas.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorInterceptorService implements HttpInterceptor {
 
-  constructor() { }
+  constructor(
+    private ngxBugatlasService:NgxBugatlasService
+  ) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): any {
     return next.handle(request)
       .pipe(
-        catchError((error: HttpErrorResponse) => {
+        catchError(async (error: HttpErrorResponse) => {
+         const privateKey = await this.ngxBugatlasService.getPrivateKey();
+         if(privateKey == ''){
+          console.log("Please set private key");
+          return
+         }
+          console.log("privateKey",privateKey);
           console.log("http error",error);
-          return throwError(() => new Error(error.error));
           
       })
       );

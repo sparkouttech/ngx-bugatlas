@@ -2,23 +2,13 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
-## Code scaffolding
+## npm install
 
-Run `ng generate component component-name --project ngx-bugatlas` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-bugatlas`.
-> Note: Don't forget to add `--project ngx-bugatlas` or else it will be added to the default project in your `angular.json` file. 
+npm i ngx-bugatlas
 
-## Build
+## configure in module
 
-Run `ng build ngx-bugatlas` to build the project. The build artifacts will be stored in the `dist/` directory.
+import { NgxBugatlasModule } from 'ngx-bugatlas';
 
-## Publishing
+imports: [ NgxBugatlasModule ]
 
-After building your library with `ng build ngx-bugatlas`, go to the dist folder `cd dist/ngx-bugatlas` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngx-bugatlas` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
