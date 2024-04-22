@@ -8,7 +8,18 @@ npm i ngx-bugatlas
 
 ## configure in module
 
-import { NgxBugatlasModule } from 'ngx-bugatlas';
+import { NgxBugatlasModule, NgxBugatlasService } from 'ngx-bugatlas';
 
 imports: [ NgxBugatlasModule ]
+
+## project id configure in module
+
+export class AppModule {
+  constructor(
+    private ngxBugatlasService : NgxBugatlasService,
+  ) 
+  {
+    this.ngxBugatlasService.setProjectId('PROJECT_ID');
+  }
+ }
 

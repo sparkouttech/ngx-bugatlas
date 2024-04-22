@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NgxBugatlasService {
-  privateKey:string = '';
+  projectId:string = '';
 
   constructor() { }
 
@@ -12,15 +12,15 @@ export class NgxBugatlasService {
  * set private key
  * @param {string} key 
  */
-setPrivateKey(key:string){
-  this.privateKey = key;
+setProjectId(key:string){
+  this.projectId = key;
 } 
 
 /**
  * Gets private key
  */
-getPrivateKey(){
-  return this.privateKey;
+getProjectId(){
+  return this.projectId;
 }
 
 }
