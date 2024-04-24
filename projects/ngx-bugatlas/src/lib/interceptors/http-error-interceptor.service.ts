@@ -19,14 +19,16 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError(async (error: HttpErrorResponse) => {
-         const projectId = await this.ngxBugatlasService.getProjectId();
-         if(projectId == ''){
-          console.log("Please set private key");
-          return
-         }
-          console.log("projectId",projectId);
-          console.log("http error",error);
-          
+          const data = {
+            request_url:request.url,
+            request_method:request.method,
+            payload:request.body,
+            error_message:error.message,
+            tag:'Http error',
+            meta:'',
+          }
+          this.ngxBugatlasService.postError(data).subscribe((response:any) => {
+          })
       })
       );
   }

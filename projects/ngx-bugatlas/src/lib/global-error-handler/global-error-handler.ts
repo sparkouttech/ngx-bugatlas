@@ -8,13 +8,12 @@ export class GlobalErrorHandler implements ErrorHandler {
     ) { }
 
     async handleError(error: any) {
-        const projectId = await this.ngxBugatlasService.getProjectId();
-        if(projectId == ''){
-            console.log("Please set private key");
-            return
-           }
-        console.log("projectId", projectId);
-        console.log("app error", error);
+        const data = {
+            tag:'App error',
+            meta:error,
+          }
+          this.ngxBugatlasService.postError(data).subscribe((response:any) => {
+          })
 
     }
 }

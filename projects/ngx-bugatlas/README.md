@@ -17,9 +17,12 @@ imports: [ NgxBugatlasModule ]
 export class AppModule {
   constructor(
     private ngxBugatlasService : NgxBugatlasService,
-  ) 
-  {
-    this.ngxBugatlasService.setProjectId('PROJECT_ID');
+  ) {
+    const data = {
+      api_key:environment.API_KEY,
+      secret_key:environment.SECRET_KEY,
+    }
+    this.ngxBugatlasService.seConfigKey(data);
   }
  }
 
