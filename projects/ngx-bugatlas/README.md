@@ -19,8 +19,8 @@ export class AppModule {
     private ngxBugatlasService : NgxBugatlasService,
   ) {
     const data = {
-      api_key:environment.API_KEY,
-      secret_key:environment.SECRET_KEY,
+      api_key:'API_KEY',
+      secret_key:'SECRET_KEY',
     }
     this.ngxBugatlasService.seConfigKey(data);
   }

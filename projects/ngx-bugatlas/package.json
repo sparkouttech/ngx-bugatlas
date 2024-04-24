@@ -8,5 +8,23 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": "https://github.com/sparkouttech/ngx-bugatlas",
+  "homepage": "https://bugatlas.com",
+  "license": "MIT",
+  "keywords": [
+    "npm",
+    "ngx",
+    "ngx-bugatlas",
+    "error",
+    "error tracking",
+    "bug",
+    "bug tracking",
+    "error monitor",
+    "bug monitor",
+    "error management",
+    "bug management",
+    "error handling",
+    "bug handling"
+  ]
 }

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { NgxBugatlasService } from '../ngx-bugatlas.service';
 
@@ -15,6 +12,12 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
     private ngxBugatlasService:NgxBugatlasService
   ) { }
 
+  /**
+   * Intercepts http error interceptor service
+   * @param {quest<any>} request 
+   * @param {HttpHandler} next 
+   * @returns 
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler): any {
     return next.handle(request)
       .pipe(
@@ -25,10 +28,9 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             payload:request.body,
             error_message:error.message,
             tag:'Http error',
-            meta:'',
           }
           this.ngxBugatlasService.postError(data).subscribe((response:any) => {
-          })
+          });
       })
       );
   }
