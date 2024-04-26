@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { httpRequest } from './interface/httpRequest';
+import { errorHttpRequest, navHttpRequest } from './interface/httpRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +24,25 @@ seConfigKey(key:object){
 
 /**
  * Posts error
- * @param {httpRequest} data 
+ * @param {errorHttpRequest} data 
  */
-postError(data:httpRequest){
+postError(data:errorHttpRequest){
   return this.http.post('https://api.bugatlas.com/v1/api/errors',data, {
+    headers: {
+      api_key:this.configKey.api_key,
+      secret_key:this.configKey.secret_key,
+    }
+  });
+}
+
+
+/**
+ * Posts navigation track
+ * @param {navHttpRequest} data 
+ * @returns  
+ */
+postNavigationTrack(data:navHttpRequest){
+  return this.http.post('https://api.bugatlas.com/v1/analytics/client',data, {
     headers: {
       api_key:this.configKey.api_key,
       secret_key:this.configKey.secret_key,
