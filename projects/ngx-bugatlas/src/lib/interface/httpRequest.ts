@@ -13,11 +13,3 @@ export interface errorHttpRequest {
     browser_name?:string
     device_type?:string
 }
-
-export interface navHttpRequest {
-    route_path?:string
-    spend_time?:string
-    meta?:any
-    browser_name?:string
-    device_type?:string
-}

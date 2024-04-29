@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { NgxBugatlasService } from '../ngx-bugatlas.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { NgxBugatlasService } from '../ngx-bugatlas.service';
 export class HttpErrorInterceptorService implements HttpInterceptor {
 
   constructor(
-    private ngxBugatlasService:NgxBugatlasService
+    private ngxBugatlasService:NgxBugatlasService,
+    private router: Router
   ) { }
 
   /**
@@ -28,6 +30,10 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             payload:request.body,
             error_message:error.message,
             tag:'Http error',
+            meta:{
+              status_code:error.status,
+              page:this.router.url
+            }
           }
           this.ngxBugatlasService.postError(data).subscribe((response:any) => {
           });
