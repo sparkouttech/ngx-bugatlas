@@ -32,7 +32,8 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             tag:'Http error',
             meta:{
               status_code:error.status,
-              page:this.router.url
+              page:this.router.url,
+              error:error.toString()
             }
           }
           this.ngxBugatlasService.postError(data).subscribe((response:any) => {

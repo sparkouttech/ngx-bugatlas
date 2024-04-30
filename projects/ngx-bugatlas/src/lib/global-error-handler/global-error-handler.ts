@@ -1,10 +1,12 @@
 import { ErrorHandler, Injectable } from "@angular/core";
 import { NgxBugatlasService } from "../ngx-bugatlas.service";
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
     constructor(
-        private ngxBugatlasService: NgxBugatlasService
+        private ngxBugatlasService: NgxBugatlasService,
+        private router: Router
     ) { }
 
     /**
@@ -14,10 +16,12 @@ export class GlobalErrorHandler implements ErrorHandler {
     async handleError(error: any) {
         const data = {
             tag:'App error',
-            meta:{'error':error},
+            meta:{
+                page:this.router.url,
+                error:error.toString()
+              }
           }
           this.ngxBugatlasService.postError(data).subscribe((response:any) => {
           });
-
     }
 }
