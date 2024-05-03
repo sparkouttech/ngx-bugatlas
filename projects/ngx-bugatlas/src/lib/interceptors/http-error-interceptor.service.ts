@@ -29,14 +29,13 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             request_method:request.method,
             payload:request.body,
             error_message:error.message,
-            tag:'Http error',
+            tag:'Web app',
             meta:{
               status_code:error.status,
-              page:this.router.url,
-              error:error.toString()
+              page:this.router.url
             }
           }
-          this.ngxBugatlasService.postError(data).subscribe((response:any) => {
+          this.ngxBugatlasService.httpErrorPost(data).subscribe((response:any) => {
           });
       })
       );

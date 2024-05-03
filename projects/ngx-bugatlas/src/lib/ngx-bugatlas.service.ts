@@ -41,11 +41,24 @@ export class NgxBugatlasService {
 
 
   /**
-   * Posts error
+   * http Posts error
    * @param {errorHttpRequest} data 
    */
-  postError(data: errorHttpRequest) {
+  httpErrorPost(data: errorHttpRequest) {
     return this.http.post('https://api.bugatlas.com/v1/api/errors', data, {
+      headers: {
+        api_key: this.configKey.api_key,
+        secret_key: this.configKey.secret_key,
+      }
+    });
+  }
+
+  /**
+   * App Posts error
+   * @param {errorHttpRequest} data 
+   */
+  appErrorPost(data: errorHttpRequest) {
+    return this.http.post('https://api.bugatlas.com/v1/client/errors', data, {
       headers: {
         api_key: this.configKey.api_key,
         secret_key: this.configKey.secret_key,

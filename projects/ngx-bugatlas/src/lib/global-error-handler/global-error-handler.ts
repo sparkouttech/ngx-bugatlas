@@ -15,13 +15,13 @@ export class GlobalErrorHandler implements ErrorHandler {
      */
     async handleError(error: any) {
         const data = {
-            tag:'App error',
+            tag:'Web app',
             meta:{
                 page:this.router.url,
                 error:error.toString()
               }
           }
-          this.ngxBugatlasService.postError(data).subscribe((response:any) => {
+          this.ngxBugatlasService.appErrorPost(data).subscribe((response:any) => {
           });
     }
 }
