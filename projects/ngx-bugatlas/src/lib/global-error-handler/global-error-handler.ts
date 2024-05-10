@@ -1,6 +1,7 @@
 import { ErrorHandler, Injectable } from "@angular/core";
 import { NgxBugatlasService } from "../ngx-bugatlas.service";
 import { Router } from '@angular/router';
+import { throwError } from "rxjs";
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -13,7 +14,7 @@ export class GlobalErrorHandler implements ErrorHandler {
      * Handles error
      * @param {any} error 
      */
-    async handleError(error: any) {
+    handleError(error: any) {
         const data = {
             tag:'Web app',
             meta:{
@@ -23,5 +24,6 @@ export class GlobalErrorHandler implements ErrorHandler {
           }
           this.ngxBugatlasService.appErrorPost(data).subscribe((response:any) => {
           });
+          return throwError(() => error);
     }
 }

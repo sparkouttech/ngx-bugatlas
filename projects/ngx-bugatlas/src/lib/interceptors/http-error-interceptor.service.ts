@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@a
 import { catchError } from 'rxjs/operators';
 import { NgxBugatlasService } from '../ngx-bugatlas.service';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): any {
     return next.handle(request)
       .pipe(
-        catchError(async (error: HttpErrorResponse) => {
+        catchError((error: HttpErrorResponse) => {
           const data = {
             request_url:request.url,
             request_method:request.method,
@@ -37,6 +38,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
           }
           this.ngxBugatlasService.httpErrorPost(data).subscribe((response:any) => {
           });
+          return throwError(() => error);
       })
       );
   }
