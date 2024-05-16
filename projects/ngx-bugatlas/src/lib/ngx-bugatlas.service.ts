@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { errorHttpRequest } from './interface/httpRequest';
 import { NavigationStart, Router, Event as RouterEvent } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,14 @@ export class NgxBugatlasService {
   private lastRoute: string = '';
   private startTime: number = 0;
   private routeTimings: { [key: string]: number[] } = {};
-
+  errorDetails = new BehaviorSubject({});
+  getErrorDetails: Observable<any>;
 
   constructor(
     private http: HttpClient,
     private router: Router
   ) {
+    this.getErrorDetails = this.errorDetails.asObservable();
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationStart) {
         // Check if there is a last route to mark its end time
@@ -27,7 +30,6 @@ export class NgxBugatlasService {
         this.startTimer(this.lastRoute); // Start new timer
       }
     });
-
   }
 
   /**
@@ -110,5 +112,13 @@ export class NgxBugatlasService {
 
     this.postNavigationTrack(data).subscribe((response) => { })
   }
+
+/**
+ * Emits errors
+ * @param {any} error 
+ */
+emitErrors(error:any){
+  this.errorDetails.next(error);
+}
 
 }

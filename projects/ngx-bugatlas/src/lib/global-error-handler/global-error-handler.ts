@@ -22,6 +22,11 @@ export class GlobalErrorHandler implements ErrorHandler {
                 error:error.toString()
               }
           }
+          const details = {
+            error:error,
+            type:'app'
+          }
+          this.ngxBugatlasService.emitErrors(details);
           this.ngxBugatlasService.appErrorPost(data).subscribe((response:any) => {
           });
           return throwError(() => error);
