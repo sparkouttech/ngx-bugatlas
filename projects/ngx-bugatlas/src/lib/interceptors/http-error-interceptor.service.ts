@@ -33,7 +33,8 @@ export class HttpErrorInterceptorService implements HttpInterceptor {
             tag:'Web app',
             meta:{
               status_code:error.status,
-              page:this.router.url
+              page:this.router.url,
+              short_error:error.error.message
             }
           }
           const details = {
