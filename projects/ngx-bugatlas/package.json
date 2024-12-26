@@ -1,9 +1,18 @@
 {
   "name": "ngx-bugatlas",
-  "version": "0.0.10",
+  "version": "18.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "typings": "./dist/index.d.ts",
   "peerDependencies": {
-    "@angular/common": "^16.2.0",
-    "@angular/core": "^16.2.0"
+    "@angular/common": "^16.2.0 || ^18.0.0",
+    "@angular/core": "^16.2.0 || ^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

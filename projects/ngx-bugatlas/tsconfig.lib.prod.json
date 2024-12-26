@@ -2,7 +2,9 @@
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
-    "declarationMap": false
+    "declarationMap": false,
+    "module": "ES2020", // Add this line for both module-based and standalone projects.
+    "moduleResolution": "node" // Add this line
   },
   "angularCompilerOptions": {
     "compilationMode": "partial"

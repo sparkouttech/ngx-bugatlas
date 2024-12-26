@@ -1,21 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+// bugatlas.component.spec.ts
+import { TestBed } from '@angular/core/testing';
 import { NgxBugatlasComponent } from './ngx-bugatlas.component';
 
-describe('NgxBugatlasComponent', () => {
-  let component: NgxBugatlasComponent;
-  let fixture: ComponentFixture<NgxBugatlasComponent>;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [NgxBugatlasComponent]
-    });
-    fixture = TestBed.createComponent(NgxBugatlasComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+describe('BugatlasComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [NgxBugatlasComponent],
+    }).compileComponents();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(NgxBugatlasComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
