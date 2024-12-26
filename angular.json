@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngx-bugatlas-library:build:production"
+              "buildTarget": "ngx-bugatlas-library:build:production"
             },
             "development": {
-              "browserTarget": "ngx-bugatlas-library:build:development"
+              "buildTarget": "ngx-bugatlas-library:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-bugatlas-library:build"
+            "buildTarget": "ngx-bugatlas-library:build"
           }
         },
         "test": {

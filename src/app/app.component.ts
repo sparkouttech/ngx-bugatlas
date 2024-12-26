@@ -1,14 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, RouterModule]
+
 })
 export class AppComponent {
   title = 'ngx-bugatlas-library';
+  constructor(@Inject('APP_CONFIG') private config: any) {
+    console.log(this.config.apiEndpoint);
+  }
 }
