@@ -1,7 +1,7 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, Provider } from '@angular/core';
 import { GlobalErrorHandler } from '../global-error-handler/global-error-handler';
-import { HttpErrorInterceptorService } from '../interceptors/http-error-interceptor.service';
+import { HttpErrorInterceptor } from '../interceptors/http-error-interceptor.service';
 
 export const BUGATLAS_PROVIDERS: Provider[] = [
     {
@@ -10,7 +10,7 @@ export const BUGATLAS_PROVIDERS: Provider[] = [
     },
     {
         provide: HTTP_INTERCEPTORS,
-        useClass: HttpErrorInterceptorService,
+        useClass: HttpErrorInterceptor,
         multi: true,
     },
 ];
