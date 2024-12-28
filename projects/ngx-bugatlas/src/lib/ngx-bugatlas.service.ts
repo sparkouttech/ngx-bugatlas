@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { errorHttpRequest } from './interface/httpRequest';
 import { NavigationStart, Router, Event as RouterEvent } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { errorHttpRequest } from './interface/httpRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -113,12 +113,12 @@ export class NgxBugatlasService {
     this.postNavigationTrack(data).subscribe((response) => { })
   }
 
-/**
- * Emits errors
- * @param {any} error 
- */
-emitErrors(error:any){
-  this.errorDetails.next(error);
-}
+  /**
+   * Emits errors
+   * @param {any} error 
+   */
+  emitErrors(error: any) {
+    this.errorDetails.next(error);
+  }
 
 }
