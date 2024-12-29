@@ -19,7 +19,7 @@
 | 0.0.2        | 14      |
 | 0.0.3        | 15      |
 | 0.0.7        | 16      |
-
+|17.1.3        | 17      |
 
 ## Install
 
@@ -27,6 +27,7 @@ npm i ngx-bugatlas
 
 ## Setup
 
+## Module based
 ```ts
 import { NgxBugatlasModule, NgxBugatlasService } from 'ngx-bugatlas';
 
@@ -46,6 +47,58 @@ export class AppModule {
     this.ngxBugatlasService.seConfigKey(data);
   }
  }
+```
+## Standalone
+## angular 17 project
+```
+app.config.ts
+
+import { ApplicationConfig } from '@angular/core';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { GlobalErrorHandler, provideGlobalErrorHandler } from 'ngx-bugatlas';
+import { ApiErrorInterceptor } from './interceptor/api-error-interceptor.interceptor';
+
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideGlobalErrorHandler(),
+    provideHttpClient(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalErrorHandler,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiErrorInterceptor,
+      multi: true, // Allow multiple interceptors
+    },
+    provideAnimations(), // required animations providers
+
+  ]
+};
+```
+app.component.ts
+```
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, HttpClientModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+
+  protected bugatlasService = inject(NgxBugatlasService)
+  constructor() {
+    const data = {
+      api_key: 'API_KEY',
+      secret_key: 'SECRET_KEY',
+    };
+    this.bugatlasService.seConfigKey(data);
+  }
+}
 ```
 **Note:** The API_KEY and SECRET_KEY will provided by our team
 
