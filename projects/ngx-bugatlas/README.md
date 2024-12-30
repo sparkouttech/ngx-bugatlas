@@ -19,8 +19,8 @@
 | 0.0.2        | 14      |
 | 0.0.3        | 15      |
 | 0.0.7        | 16      |
-|17.1.3        | 17      |
-
+| 17.1.3       | 17      |
+| 18.0.0       | 18      |
 ## Install
 
 npm i ngx-bugatlas
@@ -47,10 +47,10 @@ export class AppModule {
     this.ngxBugatlasService.seConfigKey(data);
   }
  }
+ 
 ```
 ## Standalone
-## angular 17 project
-```
+```ts
 app.config.ts
 
 import { ApplicationConfig } from '@angular/core';
@@ -78,10 +78,9 @@ export const appConfig: ApplicationConfig = {
 
   ]
 };
-```
-app.component.ts
-```
-@Component({
+ 
+ app.component.ts
+ @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HttpClientModule],
@@ -100,6 +99,8 @@ export class AppComponent {
   }
 }
 ```
+
+
 **Note:** The API_KEY and SECRET_KEY will provided by our team
 
 ## License
