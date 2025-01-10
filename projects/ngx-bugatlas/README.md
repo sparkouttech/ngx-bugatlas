@@ -20,7 +20,7 @@
 | 0.0.3        | 15      |
 | 0.0.7        | 16      |
 | 17.1.3       | 17      |
-| 18.0.0       | 18      |
+| 18.0.4       | 18      |
 ## Install
 
 npm i ngx-bugatlas
@@ -32,7 +32,13 @@ npm i ngx-bugatlas
 import { NgxBugatlasModule, NgxBugatlasService } from 'ngx-bugatlas';
 
 @NgModule({
-  imports: [ NgxBugatlasModule ]
+  imports: [ NgxBugatlasModule ],
+   providers: [
+    {
+      provide: ErrorHandler,   
+      useClass: MyErrorHandler,
+    },
+  ],
 })
 
 export class AppModule {
@@ -56,25 +62,16 @@ app.config.ts
 import { ApplicationConfig } from '@angular/core';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { GlobalErrorHandler, provideGlobalErrorHandler } from 'ngx-bugatlas';
-import { ApiErrorInterceptor } from './interceptor/api-error-interceptor.interceptor';
+import { MyErrorHandler} from 'ngx-bugatlas';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideGlobalErrorHandler(),
     provideHttpClient(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: GlobalErrorHandler,
-      multi: true
+   {
+      provide: ErrorHandler,
+      useClass: MyErrorHandler,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiErrorInterceptor,
-      multi: true, // Allow multiple interceptors
-    },
-    provideAnimations(), // required animations providers
 
   ]
 };

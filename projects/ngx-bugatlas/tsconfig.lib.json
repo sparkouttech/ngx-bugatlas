@@ -11,6 +11,10 @@
     "inlineSources": true,
     "types": []
   },
+  "include": [
+    "src/**/*.ts",
+    "src/lib/my-error-handler.ts"
+  ],
   "exclude": [
     "**/*.spec.ts"
   ],
